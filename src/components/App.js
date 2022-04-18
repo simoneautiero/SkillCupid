@@ -27,7 +27,7 @@ export default function App() {
       className="d-flex align-items-center justify-content-center"
       style={{ color: "black", minHeight: "100vh" }}
     >
-      <div className="w-100" style={{ maxWidth: "1200px" }}>
+      <div className="w-100">
         <Router>
           <AuthProvider>
             <Switch>

@@ -54,6 +54,7 @@ export default function UpdateProfile() {
                 type="email"
                 ref={emailRef}
                 required
+                readOnly
                 defaultValue={currentUser.email}
               />
             </Form.Group>
@@ -78,7 +79,7 @@ export default function UpdateProfile() {
             </Button>
           </Form>
           <div className="w-100 text-center mt-2">
-            <Link to="/">Cancel</Link>
+            <Link to="/">Back</Link>
           </div>
         </Card.Body>
       </Card>

@@ -6,6 +6,7 @@ import firebase from "firebase/app";
 import { auth } from "../firebase";
 import { useHistory } from "react-router-dom";
 import avatar from "../avatar.jpg";
+import Loader from "react-spinners/RingLoader";
 
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
@@ -173,10 +174,16 @@ const Candidate = ({
       .then((url) => {
         var img = document.getElementById("profile");
         img.setAttribute("src", url);
+
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("profile").style.display = "";
       })
       .catch((error) => {
         var img = document.getElementById("profile");
         img.setAttribute("src", avatar);
+
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("profile").style.display = "";
       });
   };
 
@@ -195,8 +202,11 @@ const Candidate = ({
   return (
     <div className="job-container">
       <div class="logo">
+        <div id="loader">
+          <Loader css={{ maxHeight: 90, maxWidth: 100 }} />
+        </div>
         <Image
-          style={{ maxHeight: 90, maxWidth: 100 }}
+          style={{ maxHeight: 90, maxWidth: 100, display: "none" }}
           value={image}
           id="profile"
           thumbnail

@@ -14,14 +14,14 @@ export default function UpdateJob(props) {
   const [mode, setMode] = useState("Face-to-face");
   const [roleType, setRoleType] = useState("Full-time");
 
+  const history = useHistory();
+
   var jobid = props.location.state;
   const db = firebase.firestore();
 
-  const [tempId, setTempId] = useState("");
+  const [tempId, setTempId] = useState();
 
-  const history = useHistory();
-
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     await db.collection("jobs").doc(tempId).update({
@@ -37,10 +37,12 @@ export default function UpdateJob(props) {
 
     alert("Job successfully updated!");
     history.push("/");
-  }
+  };
 
   async function initializeForm() {
     var data;
+
+    console.log(" this is jobid " + jobid);
 
     await db
       .collection("jobs")
@@ -61,7 +63,7 @@ export default function UpdateJob(props) {
     setLocation(data.location);
     setCompany(data.company);
     setMode(data.mode);
-    setRoleType(data.roleType);
+    setRoleType(data.role);
   }
 
   useEffect(() => {

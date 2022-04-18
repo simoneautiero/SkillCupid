@@ -3,8 +3,7 @@
 //variables
 
 :root {
-  --primary-color: rgb(91, 164, 164);
-  background: url(../bg.jpg);
+  --primary-color: #0585c4;
   --filter-table: hsl(180, 31%, 95%);
   --dark-greyish: hsl(180, 8%, 52%);
   --very-dark-greyish: hsl(180, 14%, 20%);
@@ -26,7 +25,16 @@ html {
 
 body {
   font-family: "Spartan", sans-serif;
-  background-color: var(--background-color);
+  background: url("../bg.png");
+}
+
+.btn-primary {
+  background-color: #0585c4;
+  border-color: #0062cc;
+}
+
+.btn-primary:hover {
+  background-color: #0896db;
 }
 
 @media only screen and (max-width: 375px) {

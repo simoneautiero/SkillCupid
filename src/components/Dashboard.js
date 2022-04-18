@@ -76,10 +76,18 @@ export default function Dashboard() {
       .then((url) => {
         var img = document.getElementById("profile");
         img.setAttribute("src", url);
+
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("pen").style.display = "";
+        document.getElementById("profile").style.display = "";
       })
       .catch((error) => {
         var img = document.getElementById("profile");
         img.setAttribute("src", avatar);
+
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("pen").style.display = "";
+        document.getElementById("profile").style.display = "";
       });
 
     var temp;
@@ -105,6 +113,8 @@ export default function Dashboard() {
     });
   };
 
+  const loadImage = () => {};
+
   return (
     <>
       <Card>
@@ -112,23 +122,35 @@ export default function Dashboard() {
           <h2 className="text-center mb-4">Profile</h2>
           <center>
             <div class="image-upload">
-              <Image
-                style={{ maxHeight: 175, maxWidth: 225 }}
-                value={image}
-                id="profile"
-                thumbnail
-              />
+              <div>
+                <div id="loader">
+                  <Loader
+                    css={{
+                      height: 175,
+                      width: 225,
+                      marginLeft: -50,
+                    }}
+                  />
+                </div>
 
-              <label style={{ bottomMargin: 0 }} for="myfile">
-                <FaPen />{" "}
-              </label>
-              <input
-                type="file"
-                onChange={handleImageChange}
-                id="myfile"
-                accept=".jpg,.jpeg,.png"
-                style={{ display: "none" }}
-              ></input>
+                <Image
+                  style={{ maxHeight: 175, maxWidth: 225, display: "none" }}
+                  value={image}
+                  id="profile"
+                  thumbnail
+                />
+
+                <label style={{ bottomMargin: 0 }} for="myfile">
+                  <FaPen id="pen" style={{ display: "none" }} />{" "}
+                </label>
+                <input
+                  type="file"
+                  onChange={handleImageChange}
+                  id="myfile"
+                  accept=".jpg,.jpeg,.png"
+                  style={{ display: "none" }}
+                ></input>
+              </div>
             </div>
           </center>
           {error && <Alert variant="danger">{error}</Alert>}
