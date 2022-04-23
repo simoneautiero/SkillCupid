@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import { Form, Button, Card, Alert, Image } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
+import image from "../favicon.png";
 
 export default function Login() {
   const emailRef = useRef();
@@ -32,6 +33,13 @@ export default function Login() {
         <Card.Body>
           <h2 className="text-center mb-4">Log In</h2>
           {error && <Alert variant="danger">{error}</Alert>}
+          <center>
+            <Image
+              className="text-center"
+              style={{ maxHeight: 100, maxWidth: 225, borderRadius: 10 }}
+              src={image}
+            />
+          </center>
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
