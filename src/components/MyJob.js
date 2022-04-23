@@ -73,6 +73,7 @@ export default function MyJob(props) {
     for (var i = 0; i < users_id.length; i++) {
       score = 0;
       var spare_skills = 0;
+      var validMatch = "false";
 
       await db
         .collection("users_skills")
@@ -84,6 +85,7 @@ export default function MyJob(props) {
               myjob_skills.filter((e) => e.skill === element.data().skill)
                 .length > 0
             ) {
+              validMatch = "true";
               var skill_temp = myjob_skills.filter(
                 (e) => e.skill === element.data().skill
               );
@@ -108,14 +110,14 @@ export default function MyJob(props) {
                   score = score + temp;
                 }
               }
-            } else {
-              spare_skills = (element.data().expertise * 0.015) / 5;
             }
           });
         });
 
-      if (spare_skills > 0.1) score = score + 0.1;
-      else score = score + spare_skills;
+      if (validMatch === "true") {
+        if (spare_skills > 0.1) score = score + 0.1;
+        else score = score + spare_skills;
+      }
 
       if (score > 0) {
         score = (score / maxscore) * 100;

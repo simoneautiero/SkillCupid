@@ -61,23 +61,27 @@ export default function SeekerMatch() {
           var thisjob;
           var spare_skills = 0;
           usedSkills = [];
+          var validMatch = "false";
+
+          console.log("testing this jobid : " + alljobs[i]);
 
           querySnapshot.forEach((element) => {
             thisjob = element.data().jobid;
-            console.log("analysing: " + thisjob);
 
             if (element.data().preference === "Required") {
               max_score = max_score + 1;
               if (skills.find((e) => e.skill === element.data().skill)) {
-                console.log(element.data().skill + " matched");
+                console.log("skill: " + element.data().skill + " matched");
                 var myskill = skills.filter(
                   (e) => e.skill === element.data().skill
                 );
                 var user_exp = myskill[0].expertise;
                 var job_exp = element.data().expertise;
 
+                validMatch = "true";
+
                 console.log(
-                  "jobskill: " +
+                  "calculating jobskill: " +
                     element.data().skill +
                     " user_exp: " +
                     user_exp +
@@ -90,20 +94,22 @@ export default function SeekerMatch() {
 
                 usedSkills.push(element.data().skill);
               } else {
-                console.log(element.data().skill + " did not match");
+                console.log(
+                  "skill: " + element.data().skill + " did not match"
+                );
               }
             } else if (element.data().preference === "Preferred") {
               max_score = max_score + 0.5;
               if (skills.find((e) => e.skill === element.data().skill)) {
-                console.log(element.data().skill + " matched");
+                console.log("skill: " + element.data().skill + " matched");
                 myskill = skills.filter(
                   (e) => e.skill === element.data().skill
                 );
                 user_exp = myskill[0].expertise;
                 job_exp = element.data().expertise;
-
+                validMatch = "true";
                 console.log(
-                  "jobskill: " +
+                  "calculating jobskill: " +
                     element.data().skill +
                     " user_exp: " +
                     user_exp +
@@ -117,19 +123,24 @@ export default function SeekerMatch() {
 
                 usedSkills.push(element.data().skill);
               } else {
-                console.log(element.data().skill + " did not match");
+                console.log(
+                  "skill: " + element.data().skill + " did not match"
+                );
               }
             }
           });
 
-          for (var j = 0; j < skills.length; j++) {
-            if (!usedSkills.includes(skills[j].skill))
-              spare_skills = (skills[j].expertise * 0.015) / 5;
+          if (validMatch === "true") {
+            for (var j = 0; j < skills.length; j++) {
+              if (!usedSkills.includes(skills[j].skill))
+                spare_skills = (skills[j].expertise * 0.015) / 5;
+            }
+
+            if (spare_skills > 0.1) score = score + 0.1;
+            else score = score + spare_skills;
           }
 
-          if (spare_skills > 0.1) score = score + 0.1;
-          else score = score + spare_skills;
-
+          console.log("is match valid: " + validMatch);
           console.log("score of this match: " + score);
           console.log("max score of " + alljobs[i] + " is: " + max_score);
 

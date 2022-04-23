@@ -134,7 +134,7 @@ export default function Dashboard() {
                 </div>
 
                 <Image
-                  style={{ maxHeight: 175, maxWidth: 225, display: "none" }}
+                  style={{ maxHeight: 150, maxWidth: 225, display: "none" }}
                   value={image}
                   id="profile"
                   thumbnail
