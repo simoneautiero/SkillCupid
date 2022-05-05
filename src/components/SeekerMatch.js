@@ -132,8 +132,9 @@ export default function SeekerMatch() {
 
           if (validMatch === "true") {
             for (var j = 0; j < skills.length; j++) {
+              console.log(skills[j].skill);
               if (!usedSkills.includes(skills[j].skill))
-                spare_skills = (skills[j].expertise * 0.015) / 5;
+                spare_skills = spare_skills + (skills[j].expertise * 0.015) / 5;
             }
 
             if (spare_skills > 0.1) score = score + 0.1;

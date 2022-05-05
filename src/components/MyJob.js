@@ -112,7 +112,8 @@ export default function MyJob(props) {
               }
             } else {
               //add spare skill
-              spare_skills = (element.data().expertise * 0.015) / 5;
+              spare_skills =
+                spare_skills + (element.data().expertise * 0.015) / 5;
             }
           });
         });
