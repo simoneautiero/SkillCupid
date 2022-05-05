@@ -165,7 +165,7 @@ export default function Dashboard() {
             className="btn btn-primary w-100 mt-3"
             style={{ display: status ? "none" : "block" }}
           >
-            Update Keywords
+            Update Skills
           </Link>
           <Link to="/update-profile" className="btn btn-primary w-100 mt-3">
             Update Profile

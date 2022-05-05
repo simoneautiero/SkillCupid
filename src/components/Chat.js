@@ -21,13 +21,17 @@ export default function Chat(props) {
   const sendMessage = async () => {
     setMessage(message);
 
-    await db.collection("messages").doc("messages").collection(chatid).add({
-      uid: uid,
-      message: message,
-      created: firebase.firestore.FieldValue.serverTimestamp(),
-    });
+    if (message) {
+      await db.collection("messages").doc("messages").collection(chatid).add({
+        uid: uid,
+        message: message,
+        created: firebase.firestore.FieldValue.serverTimestamp(),
+      });
 
-    setMessage("");
+      setMessage("");
+    } else {
+      alert("Please type a message!");
+    }
   };
 
   const getMessages = async () => {

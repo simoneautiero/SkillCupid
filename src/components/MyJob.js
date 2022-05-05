@@ -110,6 +110,9 @@ export default function MyJob(props) {
                   score = score + temp;
                 }
               }
+            } else {
+              //add spare skill
+              spare_skills = (element.data().expertise * 0.015) / 5;
             }
           });
         });
@@ -117,6 +120,8 @@ export default function MyJob(props) {
       if (validMatch === "true") {
         if (spare_skills > 0.1) score = score + 0.1;
         else score = score + spare_skills;
+
+        console.log("score: " + score);
       }
 
       if (score > 0) {
