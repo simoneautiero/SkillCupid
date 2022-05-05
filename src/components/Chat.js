@@ -20,7 +20,9 @@ export default function Chat(props) {
 
   const sendMessage = async () => {
     setMessage(message);
-
+  
+    if(message)
+    {
     await db.collection("messages").doc("messages").collection(chatid).add({
       uid: uid,
       message: message,
@@ -28,6 +30,11 @@ export default function Chat(props) {
     });
 
     setMessage("");
+    }
+    else
+    {
+      alert("Please type a message!")
+    }
   };
 
   const getMessages = async () => {
