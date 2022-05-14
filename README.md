@@ -1,4 +1,4 @@
-## View Skill-matching Algorithm in HD
+## View Skill-matching Algorithm in HQ
 
 https://drive.google.com/file/d/1nwTysbRfDsHgiWaHlAQPyY3zguh4bYeP/view?usp=sharing
 
