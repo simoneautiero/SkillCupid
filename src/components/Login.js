@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Form, Button, Card, Alert, Image } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
@@ -11,6 +11,14 @@ export default function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  
+   useEffect(() => {
+    if (window.location.pathname == "/login") {
+      alert(
+        "Job Seeker Demo Credentials \n\n Email: job@seeker.com \n Password: Demo.123 \n\n Job Employer Demo Credentials \n\n Email: job@employer.com \n Password: Demo.123"
+      );
+    }
+  }, []);
      
 
   async function handleSubmit(e) {
