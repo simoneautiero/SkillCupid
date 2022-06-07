@@ -11,6 +11,10 @@ export default function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  
+
+  alert('Job Seeker Demo Credentials \n\n Email: job@seeker.com \n Password: Demo.123 \n\n Job Employer Demo Credentials \n\n Email: job@emplyer.com \n Password: Demo.123 \n');
+   
 
   async function handleSubmit(e) {
     e.preventDefault();
